@@ -3,7 +3,7 @@ import Search from './Search'
 const Body = () => {
   return (
     <>
-      <div className="ml-24 bg-black">
+      <div className="ml-[5.6rem] h-screen bg-black">
         <Search />
       </div>
     </>
