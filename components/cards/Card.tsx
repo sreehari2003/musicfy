@@ -6,7 +6,7 @@ const Card = () => {
     Math.random() * 100
   )}`
   return (
-    <div className="h-350 w-250 relative flex flex-col rounded-[50px] p-5">
+    <div className="h-350 w-50 relative flex flex-col rounded-[50px] p-5">
       <Image src={img} height={350} width={250} className=" rounded-[50px]" />
       <span className="absolute left-[7rem] top-[16rem] font-sans text-lg text-white">
         BTS
