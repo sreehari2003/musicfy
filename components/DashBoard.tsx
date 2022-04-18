@@ -6,10 +6,10 @@ import Body from './Body'
 const DashBoard = () => {
   return (
     <>
-      <main>
+      <main className="flex">
         <Sidebar />
         <Body />
-        <Right />
+        <div className="w-screen bg-black"></div>
       </main>
     </>
   )

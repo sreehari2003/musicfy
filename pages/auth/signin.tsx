@@ -24,15 +24,18 @@ const Signin = (props: any) => {
           height={300}
           className="my-4 animate-pulse"
         />
-        {Object.values(elm).map((el, index) => (
-          <button
-            key={index}
-            onClick={() => signIn(el.callbackUrl)}
-            className="m-5 rounded-[50px]  bg-green-600  px-12 py-3 text-center text-xl text-white hover:scale-105"
-          >
-            Signin with {el?.name}
-          </button>
-        ))}
+        {Object.values(elm).map((el, index) => {
+          // console.log(el.callbackUrl)
+          return (
+            <button
+              key={index}
+              onClick={() => signIn(el.id)}
+              className="m-5 rounded-[50px]  bg-green-600  px-12 py-3 text-center text-xl text-white hover:scale-105"
+            >
+              Signin with {el?.name}
+            </button>
+          )
+        })}
       </div>
     </div>
   )
