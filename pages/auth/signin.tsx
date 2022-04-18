@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from 'next/image'
 import { GetServerSideProps } from 'next'
 import { getProviders, useSession, signIn } from 'next-auth/react'
+import { useRouter } from 'next/router'
+import Loader from '../../components/Loader'
 
 interface auth {
   callbackUrl: string
@@ -14,7 +16,36 @@ interface auth {
 const Signin = (props: any) => {
   let elm: auth
   elm = props.provider
+  const router = useRouter()
   const { data: session, status } = useSession()
+  useEffect(() => {
+    if (session) {
+      router.push('/')
+    }
+  }, [session])
+
+  const Result = () => {
+    if (status === 'loading') {
+      return <Loader />
+    } else {
+      return (
+        <>
+          {Object.values(elm).map((el, index) => {
+            return (
+              <button
+                key={index}
+                onClick={() => signIn(el.id)}
+                className="m-5 rounded-[50px]  bg-green-600  px-12 py-3 text-center text-xl text-white hover:scale-105"
+              >
+                Signin with {el?.name}
+              </button>
+            )
+          })}
+        </>
+      )
+    }
+  }
+
   return (
     <div className="flex h-screen items-center justify-center bg-black">
       <div className="flex h-[600px] w-[800px] flex-col place-content-around items-center justify-center ">
@@ -24,18 +55,7 @@ const Signin = (props: any) => {
           height={300}
           className="my-4 animate-pulse"
         />
-        {Object.values(elm).map((el, index) => {
-          // console.log(el.callbackUrl)
-          return (
-            <button
-              key={index}
-              onClick={() => signIn(el.id)}
-              className="m-5 rounded-[50px]  bg-green-600  px-12 py-3 text-center text-xl text-white hover:scale-105"
-            >
-              Signin with {el?.name}
-            </button>
-          )
-        })}
+        <Result />
       </div>
     </div>
   )
