@@ -5,13 +5,29 @@ import Genre from './cards/Genre'
 import Tracks from './cards/Tracks'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
-const Body = ({ spotify }: any) => {
-  const router = useRouter()
-  const { data: session, status } = useSession()
-  const { accessToken } = session
+import SpotifywebApi from 'spotify-web-api-node'
+interface spotify {
+  spotify: SpotifywebApi
+}
+interface response {
+  id: string
+  artist: string
+  title: string
+  albumUrl: string
+}
+interface data extends response {
+  popularity: number
+}
+interface relese extends response {
+  uri: string
+}
+
+const Body = ({ spotify }: spotify) => {
+  const { data: session } = useSession()
+  const accessToken: string = session.accessToken as string
   const [query, setQuery] = useState<string>('')
-  const [data, setData] = useState<[]>([])
-  const [relese, setRelese] = useState<[]>([])
+  const [data, setData] = useState<data[]>([])
+  const [relese, setRelese] = useState<relese[]>([])
 
   const getSearchText = (val: string) => {
     setQuery(val)
@@ -23,14 +39,14 @@ const Body = ({ spotify }: any) => {
   }, [accessToken])
 
   useEffect(() => {
-    if (query.length < 1) return setData([])
+    if (query.length < 1) return
     if (!accessToken) return
     const serach = async () => {
       try {
         const { body } = await spotify.searchTracks(query)
         const tracks = body.tracks.items
         setData(
-          tracks.map((el: any) => {
+          tracks.map((el) => {
             return {
               id: el.id,
               artist: el.artists[0].name,
@@ -78,7 +94,7 @@ const Body = ({ spotify }: any) => {
     return (
       <>
         {data.length === 0 &&
-          demo.map((el) => (
+          demo.map((el: relese) => (
             <>
               <Card {...el} />
             </>

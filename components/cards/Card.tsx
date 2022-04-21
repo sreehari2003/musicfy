@@ -7,7 +7,7 @@ interface data {
   artist: string
   id: string
   title: string
-  url: string
+  uri: string
 }
 
 const Card: React.FC<data> = (props) => {
