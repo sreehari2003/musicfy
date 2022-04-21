@@ -1,10 +1,16 @@
 import React from 'react'
 import Image from 'next/image'
 import { BsFillPlayFill } from 'react-icons/bs'
-const Card = () => {
+
+interface data {
+  albumUrl: String
+}
+
+const Card = ({ data }: any) => {
   const img = `https://source.unsplash.com/random/${Math.round(
     Math.random() * 100
   )}`
+  console.log(data)
   return (
     <div className="h-350 w-50 relative flex flex-col rounded-[50px] p-5">
       <Image src={img} height={350} width={250} className=" rounded-[50px]" />

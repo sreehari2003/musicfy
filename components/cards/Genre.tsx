@@ -11,7 +11,7 @@ const Name = (props: any) => {
 
 const Genre = () => {
   return (
-    <div className="m-4 min-h-[200px] w-[300px]">
+    <div className="m-4 mt-1 min-h-[200px] w-[300px]">
       <h4 className="mt-3 ml-8 mb-4 font-sans text-[23px] text-white">
         Genres
       </h4>
