@@ -6,4 +6,7 @@
     .sidebarIcon{
         @apply h-6 text-[#808080] cursor-pointer
     }
+    .btn {
+        @apply m-5 rounded-[50px]  bg-green-600  px-12 py-3 text-center text-xl text-white hover:scale-105
+    }
 }

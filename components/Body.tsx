@@ -26,19 +26,23 @@ const Body = ({ spotify }: any) => {
     if (query.length < 1) return setData([])
     if (!accessToken) return
     const serach = async () => {
-      const { body } = await spotify.searchTracks(query)
-      const tracks = body.tracks.items
-      setData(
-        tracks.map((el: any) => {
-          return {
-            id: el.id,
-            artist: el.artists[0].name,
-            title: el.name,
-            albumUrl: el.album.images[0].url,
-            popularity: el.popularity,
-          }
-        })
-      )
+      try {
+        const { body } = await spotify.searchTracks(query)
+        const tracks = body.tracks.items
+        setData(
+          tracks.map((el: any) => {
+            return {
+              id: el.id,
+              artist: el.artists[0].name,
+              title: el.name,
+              albumUrl: el.album.images[0].url,
+              popularity: el.popularity,
+            }
+          })
+        )
+      } catch (err) {
+        console.error(err)
+      }
     }
     serach()
   }, [accessToken, query])
@@ -46,23 +50,28 @@ const Body = ({ spotify }: any) => {
   useEffect(() => {
     if (!accessToken) return
     const serach = async () => {
-      const { body } = await spotify.getNewReleases()
-      const tracks = body.albums.items
-      setRelese(
-        tracks.map((el: any) => {
-          return {
-            id: el.id,
-            artist: el.artists[0].name,
-            title: el.name,
-            albumUrl: el.images[0].url,
-            uri: el.uri,
-          }
-        })
-      )
+      try {
+        const { body } = await spotify.getNewReleases()
+        const tracks = body.albums.items
+        setRelese(
+          tracks.map((el: any) => {
+            return {
+              id: el.id,
+              artist: el.artists[0].name,
+              title: el.name,
+              albumUrl: el.images[0].url,
+              uri: el.uri,
+            }
+          })
+        )
+      } catch (err) {
+        console.log(err)
+      }
     }
     serach()
   }, [accessToken])
-  console.log(relese)
+
+  //spliting components create closure
 
   const CardPrev = () => {
     const demo = relese.slice(0, 4)
@@ -71,7 +80,7 @@ const Body = ({ spotify }: any) => {
         {data.length === 0 &&
           demo.map((el) => (
             <>
-              <Card />
+              <Card {...el} />
             </>
           ))}
       </>

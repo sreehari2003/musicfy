@@ -3,6 +3,11 @@ module.exports = {
   reactStrictMode: true,
 
   images: {
-    domains: ['rb.gy', 'images.unsplash.com', 'source.unsplash.com'],
+    domains: [
+      'rb.gy',
+      'images.unsplash.com',
+      'source.unsplash.com',
+      'i.scdn.co',
+    ],
   },
 }

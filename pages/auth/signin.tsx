@@ -32,11 +32,7 @@ const Signin = (props: any) => {
         <>
           {Object.values(elm).map((el, index) => {
             return (
-              <button
-                key={index}
-                onClick={() => signIn(el.id)}
-                className="m-5 rounded-[50px]  bg-green-600  px-12 py-3 text-center text-xl text-white hover:scale-105"
-              >
+              <button key={index} onClick={() => signIn(el.id)} className="btn">
                 Signin with {el?.name}
               </button>
             )
