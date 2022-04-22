@@ -6,6 +6,8 @@ import Tracks from './cards/Tracks'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import SpotifywebApi from 'spotify-web-api-node'
+import { RootState } from '../store/config'
+import { useSelector, useDispatch } from 'react-redux'
 interface spotify {
   spotify: SpotifywebApi
 }
@@ -23,6 +25,7 @@ interface relese extends response {
 }
 
 const Body = ({ spotify }: spotify) => {
+  const playBtn = useSelector((state: RootState) => state.player.play)
   const { data: session } = useSession()
   const accessToken: string = session.accessToken as string
   const [query, setQuery] = useState<string>('')
@@ -96,7 +99,7 @@ const Body = ({ spotify }: spotify) => {
         {data.length === 0 &&
           demo.map((el: relese) => (
             <>
-              <Card {...el} />
+              <Card data={el} playBtn={playBtn} />
             </>
           ))}
       </>

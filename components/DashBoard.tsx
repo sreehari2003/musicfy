@@ -3,6 +3,7 @@ import Right from './Right'
 import Sidebar from './Sidebar'
 import Body from './Body'
 import SpotifywebApi from 'spotify-web-api-node'
+import { signOut } from 'next-auth/react'
 
 const spotify = new SpotifywebApi({
   clientId: process.env.CLIENT_ID,
@@ -15,7 +16,11 @@ const DashBoard = () => {
       <main className="flex">
         <Sidebar />
         <Body spotify={spotify} />
-        <div className="w-screen bg-black"></div>
+        <div className="w-screen bg-black">
+          <button className="btn mr-2 px-4" onClick={() => signOut()}>
+            LogOut
+          </button>
+        </div>
       </main>
     </>
   )
