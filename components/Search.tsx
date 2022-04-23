@@ -6,7 +6,7 @@ interface fun {
 
 const Search = ({ getSearchText }: fun) => {
   return (
-    <div>
+    <main>
       <div className="bottom-2 flex max-w-[1150px] items-center  overflow-hidden rounded-full border-black p-1.5 px-5 pr-8">
         <input
           type="text"
@@ -18,7 +18,7 @@ const Search = ({ getSearchText }: fun) => {
         />
         <div className="absolute left-[7.5rem] top-12 bottom-0 z-[100]  mr-12 h-4 w-4 flex-shrink-0 animate-pulse rounded-full border-2"></div>
       </div>
-    </div>
+    </main>
   )
 }
 

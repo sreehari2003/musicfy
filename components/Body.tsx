@@ -5,6 +5,7 @@ import Genre from './cards/Genre'
 import Tracks from './cards/Tracks'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
+
 import SpotifywebApi from 'spotify-web-api-node'
 import { RootState } from '../store/config'
 import { useSelector, useDispatch } from 'react-redux'
@@ -25,9 +26,18 @@ interface relese extends response {
 }
 
 const Body = ({ spotify }: spotify) => {
+  const router = useRouter()
+
   const playBtn = useSelector((state: RootState) => state.player.play)
   const { data: session } = useSession()
-  const accessToken: string = session.accessToken as string
+  useEffect(() => {
+    if (!session) {
+      router.push('/auth/signin')
+    }
+  }, [session])
+  let accessToken: string
+  accessToken = session?.accessToken as string
+
   const [query, setQuery] = useState<string>('')
   const [data, setData] = useState<data[]>([])
   const [relese, setRelese] = useState<relese[]>([])
@@ -92,14 +102,16 @@ const Body = ({ spotify }: spotify) => {
 
   //spliting components create closure
 
+  const tracks = relese.slice(4, -1)
+
   const CardPrev = () => {
     const demo = relese.slice(0, 4)
     return (
       <>
         {data.length === 0 &&
-          demo.map((el: relese) => (
+          demo.map((el: relese, index: number) => (
             <>
-              <Card data={el} playBtn={playBtn} />
+              <Card key={index} data={el} playBtn={playBtn} />
             </>
           ))}
       </>
@@ -115,7 +127,7 @@ const Body = ({ spotify }: spotify) => {
         </div>
         <div className="flex  min-h-[350px] w-[1100px] bg-black p-3">
           <Genre />
-          <Tracks />
+          <Tracks datas={tracks} />
         </div>
       </div>
     </>

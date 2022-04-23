@@ -8,6 +8,7 @@ module.exports = {
       'images.unsplash.com',
       'source.unsplash.com',
       'i.scdn.co',
+      'tinyurl.com',
     ],
   },
 }

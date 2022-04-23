@@ -1,7 +1,10 @@
 import React from 'react'
 
-const Name = (props: any) => {
-  let text: string = props.text
+interface text {
+  text: string
+}
+
+const Name = ({ text }: text) => {
   return (
     <span className="m-3 mt-3 cursor-pointer rounded-full border-2 bg-[#353535] py-2 px-5 text-white outline-white">
       {text}

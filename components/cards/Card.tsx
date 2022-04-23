@@ -4,7 +4,7 @@ import { BsFillPlayFill, BsPauseFill } from 'react-icons/bs'
 import { useSelector, useDispatch } from 'react-redux'
 import { setPlayer } from '../../store/Player'
 
-interface data {
+export interface data {
   albumUrl: string
   artist: string
   id: string
@@ -21,7 +21,7 @@ const Card = ({ data, playBtn }: res) => {
   const dispatch = useDispatch()
 
   return (
-    <div className="h-350 w-50 relative flex flex-col rounded-[50px] p-5 delay-100 hover:scale-110">
+    <div className="h-350 w-50 relative flex flex-col rounded-[50px] p-5 ">
       <Image
         src={data.albumUrl}
         height={350}

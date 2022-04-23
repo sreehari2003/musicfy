@@ -17,14 +17,14 @@ const Sidebar = () => {
         height={56}
         objectFit="contain"
       />
-      <div className="flex flex-col space-y-9">
+      <nav className="flex flex-col space-y-9">
         <HomeIcon className="sidebarIcon text-white opacity-[0.85]  delay-150 hover:text-white" />
         <RiCompassFill className="sidebarIcon  text-2xl  delay-150 hover:text-white" />
         <FaMicrophoneAlt className="sidebarIcon ml-1 delay-150 hover:text-white" />
         <ChartBarIcon className="sidebarIcon  delay-150 hover:text-white" />
         <ClockIcon className="sidebarIcon  delay-150 hover:text-white" />
         <DotsHorizontalIcon className="sidebarIcon  delay-150 hover:text-white" />
-      </div>
+      </nav>
     </section>
   )
 }
