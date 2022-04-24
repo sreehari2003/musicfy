@@ -12,7 +12,7 @@ const Tracks = ({ datas }: res) => {
     <>
       <section className="flex flex-col">
         <h3 className="mb-6 text-xl text-white">Tracks of week</h3>
-        <div className=" h-[350px] w-[450px] overflow-y-scroll rounded-lg border-[.01px] border-[#EEEEEE] bg-black p-1 scrollbar-thin scrollbar-track-blue-300 scrollbar-thumb-blue-700 dark:scrollbar-track-gray-700 dark:scrollbar-thumb-blue-100">
+        <div className=" h-[350px] w-[750px] overflow-y-scroll rounded-lg border-[.01px] border-[#EEEEEE] bg-black p-1 scrollbar-thin scrollbar-track-blue-300 scrollbar-thumb-blue-700 dark:scrollbar-track-gray-700 dark:scrollbar-thumb-blue-100">
           {datas.map((el) => (
             <>
               <div

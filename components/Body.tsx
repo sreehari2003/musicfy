@@ -120,7 +120,7 @@ const Body = ({ spotify }: spotify) => {
 
   return (
     <>
-      <div className="ml-[5.6rem] min-h-screen w-[1150px] bg-black">
+      <div className="ml-[5.6rem] min-h-screen w-[1200px] bg-black xl:w-[1200px]">
         <Search getSearchText={getSearchText} />
         <div className="m-5 flex h-[55vh] w-[1100px] justify-center  p-5">
           <CardPrev />
